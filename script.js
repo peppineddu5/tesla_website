@@ -16,7 +16,6 @@
   
     function check(e) {
       
-      // uses native elementFromPoint for better performance
       const rect = e.target.getBoundingClientRect();
       const centerCell = document.elementFromPoint(rect.left + e.target.offsetWidth / 2, rect.top + e.target.offsetHeight / 2)
       for (const cell of e.target.getElementsByClassName(selected)) {
@@ -56,19 +55,19 @@
   
   
   function debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
    
     return function() {
       
-      var context = this,
+      const context = this,
         args = arguments;
-      var later = function() {
+      const later = function() {
         timeout = null;
         if (!immediate) func.apply(context, args);
         
       };
       
-      var callNow = immediate && !timeout;
+      const callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
